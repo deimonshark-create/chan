@@ -1,0 +1,604 @@
+/* ============================================================
+   REGALO DE CUMPLEAÑOS PARA CHAN - Estilos
+   ============================================================ */
+
+:root {
+    --bg:        #0d0d14;
+    --bg-2:      #12121c;
+    --green:     #6ee06e;   /* Minecraft hierba */
+    --green-dk:  #3f9b3f;
+    --diamond:   #4aedd9;   /* Diamante */
+    --red:       #ff4655;   /* Valorant */
+    --gold:      #ffd700;
+    --pink:      #ff5c8a;
+    --text:      #eaeaf2;
+    --muted:     #9a9aad;
+    --card:      #1a1a28;
+    --radius:    18px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Poppins", system-ui, sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Fondo con degradado suave */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(74, 237, 217, 0.10), transparent 45%),
+        radial-gradient(circle at 85% 15%, rgba(255, 70, 85, 0.10), transparent 45%),
+        radial-gradient(circle at 50% 100%, rgba(110, 224, 110, 0.08), transparent 50%);
+    pointer-events: none;
+    z-index: -2;
+}
+
+/* Canvas de particulas */
+#particles {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* ============================ HERO ============================ */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+}
+
+.hero-glow {
+    position: absolute;
+    width: 620px;
+    height: 620px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 92, 138, 0.22), transparent 65%);
+    filter: blur(20px);
+    animation: pulse 4s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50%      { transform: scale(1.15); opacity: 1; }
+}
+
+/* Corazon pixelado hecho con CSS */
+.pixel-heart {
+    display: grid;
+    grid-template-columns: repeat(5, 16px);
+    grid-template-rows: repeat(5, 16px);
+    gap: 3px;
+    margin-bottom: 26px;
+    animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+.pixel {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    background: var(--pink);
+    box-shadow: 0 0 12px rgba(255, 92, 138, 0.6);
+}
+
+/* Forma del corazon (celdas vacias ocultas) */
+.pixel-heart .pixel:nth-child(1),
+.pixel-heart .pixel:nth-child(3),
+.pixel-heart .pixel:nth-child(5),
+.pixel-heart .pixel:nth-child(16),
+.pixel-heart .pixel:nth-child(20),
+.pixel-heart .pixel:nth-child(21),
+.pixel-heart .pixel:nth-child(22),
+.pixel-heart .pixel:nth-child(24),
+.pixel-heart .pixel:nth-child(25) {
+    opacity: 0;
+    transform: scale(0);
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15%      { transform: scale(1.18); }
+    30%      { transform: scale(1); }
+    45%      { transform: scale(1.12); }
+}
+
+.hero-kicker {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    color: var(--diamond);
+    margin-bottom: 14px;
+}
+
+.hero-title {
+    font-family: "Press Start 2P", monospace;
+    font-size: clamp(1.3rem, 4vw, 2.6rem);
+    line-height: 1.5;
+    color: var(--text);
+    text-shadow: 3px 3px 0 rgba(255, 70, 85, 0.35);
+}
+
+.hero-name {
+    font-family: "Press Start 2P", monospace;
+    font-size: clamp(2.2rem, 8vw, 5rem);
+    margin: 18px 0 24px;
+    background: linear-gradient(90deg, var(--diamond), var(--green), var(--gold), var(--pink));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 5s linear infinite;
+}
+
+@keyframes shimmer {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+.hero-sub {
+    max-width: 560px;
+    color: var(--muted);
+    font-size: 1.02rem;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 34px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stat { display: flex; flex-direction: column; }
+
+.stat-num {
+    font-family: "Press Start 2P", monospace;
+    font-size: 1.5rem;
+    color: var(--gold);
+}
+
+.stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-scroll {
+    color: var(--diamond);
+    text-decoration: none;
+    font-size: 0.85rem;
+    border: 1px solid rgba(74, 237, 217, 0.4);
+    padding: 12px 22px;
+    border-radius: 40px;
+    transition: 0.3s;
+    animation: bob 2s ease-in-out infinite;
+}
+
+.btn-scroll:hover {
+    background: rgba(74, 237, 217, 0.1);
+    transform: translateY(-3px);
+}
+
+@keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(6px); }
+}
+
+/* ============================ SECCIONES ============================ */
+.section {
+    padding: 110px 20px;
+    position: relative;
+}
+
+.section-dark { background: var(--bg-2); }
+
+.section-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 40px;
+    margin-bottom: 18px;
+}
+
+.tag-green { color: var(--green);  background: rgba(110, 224, 110, 0.10); }
+.tag-red   { color: var(--red);    background: rgba(255, 70, 85, 0.10); }
+.tag-gold  { color: var(--gold);   background: rgba(255, 215, 0, 0.10); }
+.tag-pink  { color: var(--pink);   background: rgba(255, 92, 138, 0.10); }
+
+.section-title {
+    font-family: "Press Start 2P", monospace;
+    font-size: clamp(1.1rem, 3.4vw, 1.9rem);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.section-desc {
+    color: var(--muted);
+    max-width: 620px;
+    margin: 0 auto 50px;
+}
+
+/* ---- Bloques Minecraft ---- */
+.blocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 26px;
+}
+
+.block-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 30px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.35s;
+}
+
+.block-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(110, 224, 110, 0.4);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+.block-face {
+    width: 66px;
+    height: 66px;
+    margin: 0 auto 18px;
+    border-radius: 8px;
+    image-rendering: pixelated;
+    box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.25);
+}
+
+.block-face.grass {
+    background:
+        linear-gradient(180deg, #6ee06e 0 34%, #8a6a43 34% 100%);
+    box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.25), inset 0 -22px 0 rgba(0,0,0,0.12);
+}
+
+.block-face.diamond {
+    background:
+        linear-gradient(135deg, #4aedd9, #1fa89a);
+    box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.25), inset 0 0 18px rgba(255,255,255,0.35);
+}
+
+.block-face.redstone {
+    background:
+        linear-gradient(135deg, #ff4655, #7a1b22);
+    box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.25), inset 0 0 18px rgba(255,255,255,0.25);
+}
+
+.block-card h4 { margin-bottom: 10px; font-size: 1.05rem; }
+.block-card p  { color: var(--muted); font-size: 0.9rem; }
+
+/* ---- Grid Valorant ---- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 46px;
+}
+
+.stat-card {
+    background: var(--card);
+    border: 1px solid rgba(255, 70, 85, 0.18);
+    border-radius: var(--radius);
+    padding: 28px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: 0.35s;
+}
+
+.stat-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--red);
+    box-shadow: 0 16px 34px rgba(255, 70, 85, 0.25);
+}
+
+.stat-icon  { font-size: 1.6rem; }
+.stat-big   {
+    font-family: "Press Start 2P", monospace;
+    font-size: 1.4rem;
+    color: var(--red);
+}
+.stat-small { color: var(--muted); font-size: 0.8rem; }
+
+.valorant-line {
+    font-size: 1.15rem;
+    color: var(--text);
+    font-style: italic;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+/* ---- Regalos ---- */
+.gifts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.gift {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transition: 0.3s;
+    color: var(--text);
+}
+
+.gift:hover { transform: translateY(-10px); }
+
+.gift-box {
+    width: 110px;
+    height: 100px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #262638, #1a1a28);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: inset 0 0 0 3px rgba(0,0,0,0.3);
+}
+
+.gift-lid {
+    width: 122px;
+    height: 24px;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #33334a, #262638);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: -4px;
+    transition: 0.35s;
+}
+
+.gift:hover .gift-lid {
+    transform: translateY(-10px) rotate(-4deg);
+}
+
+.gift-symbol { font-size: 2.4rem; }
+.gift-hint {
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+/* ---- Carta ---- */
+.section-letter { background: linear-gradient(180deg, var(--bg), var(--bg-2)); }
+
+.letter {
+    max-width: 700px;
+    margin: 0 auto 60px;
+    text-align: left;
+    background: rgba(26, 26, 40, 0.7);
+    border: 1px solid rgba(255, 92, 138, 0.18);
+    border-radius: var(--radius);
+    padding: 40px clamp(22px, 5vw, 50px);
+    line-height: 1.9;
+    font-size: 1.02rem;
+}
+
+.letter p { margin-bottom: 18px; color: #d7d7e4; }
+.letter strong { color: var(--pink); }
+
+.letter-sign {
+    font-family: "Press Start 2P", monospace;
+    font-size: 0.85rem;
+    color: var(--pink);
+    text-align: right;
+    margin-top: 26px;
+}
+
+.letter-form {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+    background: rgba(26, 26, 40, 0.5);
+    padding: 30px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.letter-form h4 { margin-bottom: 16px; color: var(--diamond); }
+
+.letter-form textarea {
+    width: 100%;
+    background: #0e0e18;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: vertical;
+    outline: none;
+    transition: 0.3s;
+}
+
+.letter-form textarea:focus { border-color: var(--pink); }
+
+.btn-send {
+    margin-top: 14px;
+    background: linear-gradient(135deg, var(--pink), #c93d66);
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-send:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(255, 92, 138, 0.4); }
+
+.form-ok {
+    color: var(--green);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+/* ---- Footer ---- */
+.footer {
+    text-align: center;
+    padding: 80px 20px 60px;
+}
+
+.btn-confetti,
+.btn-music {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 14px 26px;
+    border-radius: 40px;
+    margin: 0 8px 30px;
+    font-family: inherit;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-confetti:hover { border-color: var(--gold);  background: rgba(255, 215, 0, 0.1); }
+.btn-music:hover    { border-color: var(--green); background: rgba(110, 224, 110, 0.1); }
+
+.footer-text {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.9;
+}
+
+/* ---- Modal ---- */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 100;
+}
+
+.modal.open { opacity: 1; pointer-events: auto; }
+
+.modal-content {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 46px 34px 38px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transform: scale(0.85);
+    transition: 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+}
+
+.modal.open .modal-content { transform: scale(1); }
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.7rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: 0.2s;
+}
+
+.modal-close:hover { color: var(--text); }
+
+.modal-icon {
+    font-size: 3rem;
+    margin-bottom: 18px;
+}
+
+.modal-content h3 {
+    font-family: "Press Start 2P", monospace;
+    font-size: 1rem;
+    margin-bottom: 18px;
+    line-height: 1.6;
+}
+
+.modal-content p { color: var(--muted); }
+
+/* ---- Animacion reveal ---- */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---- Corazones flotantes del cursor ---- */
+.cursor-heart {
+    position: fixed;
+    font-size: 15px;
+    color: var(--pink);
+    pointer-events: none;
+    z-index: 999;
+    animation: floatUp 1s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0%   { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-40px) scale(1.6); }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+    .hero-stats { gap: 22px; }
+    .letter { padding: 28px 20px; }
+    .btn-confetti, .btn-music { display: block; width: 100%; max-width: 280px; margin: 0 auto 14px; }
+}
+
+/* Reduce movimiento si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+}
