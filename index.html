@@ -190,7 +190,14 @@
                 <p class="letter-sign">Con todo mi cari&ntilde;o &#9829;</p>
             </div>
 
-            
+            <div class="letter-form">
+                <h4>&iquest;Quieres dejarme una carta t&uacute; tambi&eacute;n?</h4>
+                <p id="formOk" class="form-ok" style="display:none;">&#10003; Tu carta se guard&oacute; con mucho cari&ntilde;o. Gracias, Chan.</p>
+                <form id="letterForm">
+                    <textarea name="carta" rows="5" placeholder="Escribe algo lindo aqu&iacute;..." required></textarea>
+                    <button type="submit" class="btn-send">Enviar mi carta &#9829;</button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -217,6 +224,7 @@
         // Dias juntos calculados en vivo
         (function () {
             const el = document.getElementById("diasJuntos");
+            if (!el) return;
             const desde = new Date(el.dataset.desde + "T00:00:00");
             const hoy = new Date();
             hoy.setHours(0, 0, 0, 0);
@@ -232,6 +240,8 @@
 
         // Frase aleatoria
         (function () {
+            const el = document.getElementById("fraseRandom");
+            if (!el) return;
             const frases = [
                 "Eres mi cabeza de creeper favorita.",
                 "En Valorant nadie te gana una 1v1.",
@@ -240,19 +250,22 @@
                 "Gracias por existir, Chan.",
                 "Siempre gana nuestro duo."
             ];
-            document.getElementById("fraseRandom").textContent =
-                frases[Math.floor(Math.random() * frases.length)];
+            el.textContent = frases[Math.floor(Math.random() * frases.length)];
         })();
 
         // Formulario de carta (version estatica)
         (function () {
             const form = document.getElementById("letterForm");
             const ok = document.getElementById("formOk");
+            if (!form) return;
             form.addEventListener("submit", function (e) {
                 e.preventDefault();
                 const texto = form.carta.value.trim();
                 if (!texto) return;
-                ok.style.display = "block";
+                try {
+                    localStorage.setItem("carta_chan_" + Date.now(), texto);
+                } catch (err) {}
+                if (ok) ok.style.display = "block";
                 form.reset();
                 if (window.burstConfetti) burstConfetti(60);
             });

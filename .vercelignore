@@ -1,0 +1,3 @@
+# Ignorar archivos PHP que no se usan en Vercel
+index.php
+cartas/
